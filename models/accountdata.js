@@ -2,8 +2,7 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
       
 var accountdataSchema = new Schema({
-    	_id : { type: String, required: true, trim: true, index: { unique: true } },
-	    name : { type: String, required: true, trim: true },
+    	username : { type: String, required: true, trim: true, index: { unique: true } },
 	    email : { type: String, required: true, trim: true },
 	    password: { type: String, required: true, trim: true },
 	    age: { type: Number, required: true, trim: true },

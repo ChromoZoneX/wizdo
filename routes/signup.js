@@ -5,20 +5,18 @@ var Accountdata = require('../models/accountdata').Accountdata;
 
 /* POST Signup Data */
 router.post('/', function(req, res) {
-  var username = req.body.userid; 
+  var username = req.body.username; 
   var password = req.body.password;
-  var name = req.body.username;
   var email = req.body.email;
   var age = req.body.age;
   var gender = req.body.gender;
-  Accountdata.findOne({ name: { $regex: new RegExp(username, "i") } }, function(err, doc) {  
+  Accountdata.findOne({ username: { $regex: new RegExp(username, "i") } }, function(err, doc) {  
     if(!err && !doc) {
       
       var newAccountdata = new Accountdata(); 
 
-      newAccountdata._id = username; 
       newAccountdata.password = password;
-      newAccountdata.name = name;
+      newAccountdata.username = username;
       newAccountdata.email = email;
       newAccountdata.age = age;
       newAccountdata.gender = gender;

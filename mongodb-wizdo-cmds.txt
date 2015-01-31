@@ -1,0 +1,7 @@
+1) 	use <database> // creates database
+2) 	db.acc_data.insert( {_id:"rand" , email: "rand101@hotmail.com", password: "123456", name: "Random Ness" ,age: 21, gender: "Female" }) 
+		// creates acc_data collection (table) if doesn't exists and insert the document (row) with correct columns
+3) 	db.questions.insert({ question:"Am I going to finish this by Sunday?", yes:4, no:1}) //use mongodb id, to filter data using id, you have to create an obj = ObjectId("blah");
+	db.questions.insert({ _id:"hash_of_username_and_timestamp", question:"Am I going to finish this by Sunday?", yes:4, no:1}) // uses custom ids
+4)	db.questions.insert({ _id:"drex420" , q_array: [ 1 , "2" ]}) // create and insert into questions table
+5)  db.answers.insert({ _id:"rand" , q_array: [ "2", "3" ]}) // create answers collection and inserting data

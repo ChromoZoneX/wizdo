@@ -18,6 +18,7 @@ router.post('/', function(req, res) {
 
       newAccountdata._id = username; 
       newAccountdata.password = password;
+      newAccountdata.name = name;
       newAccountdata.email = email;
       newAccountdata.age = age;
       newAccountdata.gender = gender;

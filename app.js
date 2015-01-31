@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 //var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+var askquestion = require('./routes/askquestion');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/wizdo'); //Connect to local mongodb instance
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/users', users);
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/askquestion', askquestion);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,8 +5,9 @@ var Accountdata = require('../models/accountdata').Accountdata;
 
 /* POST Signup Data */
 router.post('/', function(req, res) {
-  var username = req.body.username; 
+  var username = req.body.userid; 
   var password = req.body.password;
+  var name = req.body.username;
   var email = req.body.email;
   var age = req.body.age;
   var gender = req.body.gender;

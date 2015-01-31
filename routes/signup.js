@@ -5,18 +5,23 @@ var Accountdata = require('../models/accountdata').Accountdata;
 
 /* POST Signup Data */
 router.post('/', function(req, res) {
-  var uname = req.body.username; // Name of workout. 
-  var pword = req.body.password;  // Description of the workout
-
-  //Workout.findOne({ name: workout_name }, function(err, doc) {  // This line is case sensitive.
-  // Case Insensitive RegEx Search
-  Accountdata.findOne({ name: { $regex: new RegExp(uname, "i") } }, function(err, doc) {  
+  var username = req.body.username; 
+  var password = req.body.password;
+  var email = req.body.email;
+  var age = req.body.age;
+  var gender = req.body.gender;
+  Accountdata.findOne({ name: { $regex: new RegExp(username, "i") } }, function(err, doc) {  
     if(!err && !doc) {
       
       var newAccountdata = new Accountdata(); 
 
-      newAccountdata.username = uname; 
-      newAccountdata.password = pword; 
+      newAccountdata._id = username; 
+      newAccountdata.password = password;
+      newAccountdata.email = email;
+      newAccountdata.age = age;
+      newAccountdata.gender = gender;
+      newAccountdata.timestamp = new Date().toString();
+
       
       newAccountdata.save(function(err) {
 

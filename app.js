@@ -42,8 +42,8 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/askquestion', askquestion);
 app.use('/answer', answer);
-app.use('/pastquestions', pastquestions);
-app.use('/pastanswers', pastanswers);
+// app.use('/pastquestions', pastquestions);
+// app.use('/pastanswers', pastanswers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,6 +14,7 @@ var answer = require('./routes/answer');
 var pastquestions = require('./routes/pastquestions');
 var pastanswers = require('./routes/pastanswers');
 var mongoose = require('mongoose');
+var hbs = require('hbs');
 
 mongoose.connect('mongodb://localhost/wizdo'); //Connect to local mongodb instance
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
@@ -25,8 +26,10 @@ var app = express(); //set up app
 
 // view engine setup
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'web/views'));
+//app.set('view engine', 'jade');
+app.set('view engine', 'html');
+app.engine('.html', require('ejs').__express);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -44,6 +47,26 @@ app.use('/api/askquestion', askquestion);
 app.use('/api/answer', answer);
 app.use('/api/pastquestions', pastquestions);
 app.use('/api/pastanswers', pastanswers);
+
+app.get('/', function(req, res) {
+    res.render('main');
+});
+var auth = undefined;   // user authentication
+app.get('/login', function(req, res) {
+    res.render('login');
+});
+app.get('/ask', function(req, res) {
+    res.render('ask');
+});
+app.get('/answer', function(req, res) {
+    res.render('answer');
+});
+app.get('/askhist', function(req, res) {
+    res.render('askhistory');
+});
+app.get('/answerhist', function(req, res) {
+    res.render('answerhistory');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

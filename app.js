@@ -11,8 +11,8 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 var askquestion = require('./routes/askquestion');
 var answer = require('./routes/answer');
-var pastquestions = require('./routes/pastquestions');
-var pastanswers = require('./routes/pastanswers');
+//var pastquestions = require('./routes/pastquestions');
+//var pastanswers = require('./routes/pastanswers');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/wizdo'); //Connect to local mongodb instance

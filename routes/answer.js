@@ -6,54 +6,31 @@ var Answers = require('../models/answers').Answers;
 
 /* Retrieve a Question */
 router.get('/retrievequestion', function(req, res) {
-    
-    //var newQuestiondata = new Questiondata();
-    
-    //res.json(200, { "data" : "newQuestiondata" });
+    var uname = req.body.username;
     
     var bigDoc;
     var query = Questiondata.find({}, function(err, doc){
-        bigDoc = doc;
-        if(!err && doc !== null) {
-            //do nothing
+        if(!err && doc.length > 0) {
+            var rand = Math.floor((Math.random() * doc.length));
+            
+            var query2 = Answers.find({username : uname} , function(err, userQuestions){
+                //While string is in the question array
+                while ($.inArray(doc[rand][0], userQuestions[1]) >= 0){ //returns -1 if not found
+                    rand = Math.floor((Math.random() * doc.length));
+                }
+            
+                res.json(200, {message: bigDoc[rand]});
+            });
+            
         } else {
-          //res.json(500, {message: "Could not get question. Error: " + err});
+          res.json(500, {message: "Could not get question. Error: " + err});
         } 
     });
-    
-    var rand = Math.floor((Math.random() * bigDoc.size));
-        console.log("1");
-    while ($.inArray(bigDoc[rand][0], categories) >= 0){ //returns -1 if not found
-        rand = Math.floor((Math.random() * 10));
-    }
-
-    
-    res.json(200, {message: bigDoc[rand]});
-    
-    //.limit(-1).skip(rand).next();
-    /*
-    console.log(query);
-    if ( query === null ){
-        res.json(500, { message: "No Questions :("});
-    }
-    else{
-        res.json(200, { data : query });
-    }
-    
-    console.log("2");
-    newQuestiondata.find({ q_ids: QuestionData.q_id }).select({q_ids: QuestionData.q_id});
-    console.log("3");
-    if (QuestionData.size >= 0){
-        res.json(200, { data : newQuestiondata });
-    }
-    else {
-        res.json(500, { message: "No Questions :("});
-    }*/
-    
 });
 
-/* Post QuestionID into user's list of Answered Questions */
-router.post('/questionlistdb', function(req, res) {
+/* Post QuestionID into user's list of Answered Questions
+   And update the question with the users choice          */
+router.post('/updatequestion', function(req, res) {
     var uname = req.body.username;
     var questionAskedId = req.body.questionId;
 

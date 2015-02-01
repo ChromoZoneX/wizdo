@@ -12,7 +12,7 @@ var signup = require('./routes/signup');
 var askquestion = require('./routes/askquestion');
 var answer = require('./routes/answer');
 var pastquestions = require('./routes/pastquestions');
-var pastanswers = require('./routes/pastanswers');
+//var pastanswers = require('./routes/pastanswers');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/wizdo'); //Connect to local mongodb instance
@@ -43,7 +43,7 @@ app.use('/signup', signup);
 app.use('/askquestion', askquestion);
 app.use('/answer', answer);
 app.use('/pastquestions', pastquestions);
-app.use('/pastanswers', pastanswers);
+// app.use('/pastanswers', pastanswers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

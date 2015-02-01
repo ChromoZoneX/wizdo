@@ -5,7 +5,7 @@ var crypto = require('crypto');
 var QuestionData = require('../models/questiondata').QuestionData;
 var Questions = require('../models/questions').Questions;
 /* Post a Question */
-router.post('/questiondb', function(req, res) {
+router.post('/', function(req, res) {
     var q_id = crypto.randomBytes(20).toString('hex');
     var question = req.body.question;
     var username = req.body.username;
@@ -18,7 +18,7 @@ router.post('/questiondb', function(req, res) {
       newQuestionData.q_id = q_id;
       newQuestionData.question = question;
       newQuestionData.yes = 0;
-      newQuestionData.yes = 0;
+      newQuestionData.no = 0;
       newQuestionData.timestamp = new Date().toString();
       
       //save the question object
@@ -29,7 +29,7 @@ router.post('/questiondb', function(req, res) {
           var query = Questions.where({ username: username });
           query.findOne(function(err,docs) {
             console.log("doc: " + docs);
-            if (docs.length > 0) {
+            if (docs) {
               var q_ids = docs[0].q_ids;
               q_ids.push(q_id);
               query.update({ $set: { q_ids: q_ids }},function(err){

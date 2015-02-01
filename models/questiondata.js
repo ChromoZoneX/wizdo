@@ -12,5 +12,5 @@ var questiondataSchema = new Schema({
 var questiondata = mongoose.model('questiondata', questiondataSchema);
       
 module.exports = {
-  Questiondata: questiondata
+  QuestionData: questiondata
 };

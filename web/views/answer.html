@@ -1,21 +1,25 @@
 <% include header.html %>
 <div class="container">
-<div class="jumbotron">
-	<!-- GET  Question-->
-	<h1>Sample Question</h1>
-</div>
-<div class="row">
-	<form style="text-align:center;">
-		<div class="col-md-4">
-			<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-danger">NO</a>
+	<div class="jumbotron container" style="display: table; vertical-align: middle; width: 100%; max-width: 750px">
+		<!-- GET  Question-->
+        	<h1>Sample Question</h1>
+
+	</div>
+	<div class="jumbotron container" style="display: table; margin-bottom: 0px; vertical-align: middle; width: 100%; max-width: 750px">
+
+   		<div class="row" style="display: table-cell; vertical-align: middle; text-align: center;">		
+			<form style="text-align:center;">
+				<div class="col-md-4">
+					<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-danger">NO</a>
+				</div>
+				<div class="col-md-4">
+					<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-warning">SKIP</a>
+				</div>
+				<div class="col-md-4">
+					<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-success">YES</a>
+				</div>
+			</form>
 		</div>
-		<div class="col-md-4">
-			<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-warning">SKIP</a>
-		</div>
-		<div class="col-md-4">
-			<a ng-href="#/answer" style="border-radius: 0px;" class="btn btn-primary btn-lg btn-block btn-success">YES</a>
-		</div>
-	</form>
-</div>
+	</div>
 </div>
 <% include footer.html %>

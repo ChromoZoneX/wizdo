@@ -61,17 +61,15 @@ app.get('/', function(req, res) {
 app.get('/login', function(req, res) {
     res.render('login');
 });
-<<<<<<< HEAD
 app.get('/signup', function(req, res) {
     res.render('signup');
-=======
+});
 app.get('/main', function(req, res) {
     res.render('main');
 });
 app.post('/auth', function(req, res) {
     auth = res.body.auth;
     res.end("done");
->>>>>>> 6b876abfbcd80d042dc6b2e6385f0d8c47a4438a
 });
 app.get('/ask', function(req, res) {
     res.render('ask');

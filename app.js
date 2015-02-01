@@ -38,12 +38,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 //app.use('/users', users);
-app.use('/login', login);
-app.use('/signup', signup);
-app.use('/askquestion', askquestion);
-app.use('/answer', answer);
-app.use('/pastquestions', pastquestions);
-app.use('/pastanswers', pastanswers);
+app.use('/api/login', login);
+app.use('/api/signup', signup);
+app.use('/api/askquestion', askquestion);
+app.use('/api/answer', answer);
+app.use('/api/pastquestions', pastquestions);
+app.use('/api/pastanswers', pastanswers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

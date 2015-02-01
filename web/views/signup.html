@@ -43,7 +43,7 @@
           email=$("#email").val();
           age=$("#age").val();
           gender=$("#gender").val();
-          alert(user + " " + pass);
+          // alert(user + " " + pass);
           $.post("api/signup",{username: user, password: pass, email: email, age: age, gender: gender}, function(data){
             if(data.message != "Could not create account." && data.message != "Account already exists")
               {

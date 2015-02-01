@@ -1,0 +1,48 @@
+<% include header.html %>
+<div class="content">
+    <div class="jumbotron container" style="display: table; vertical-align: middle; height: 70%; width: 100%; max-width: 750px">
+        <div class="row" style="display: table-cell; vertical-align: middle; text-align: center;">
+            <div >
+                <label for="username">User Name </label>
+            </div>
+            <div>
+                <input type="text" style="width:100%" name="username" id="username" />
+            </div>
+            <br>
+            <div>
+                <label for="password">Password</label>
+            </div>
+
+            <div>
+                <input type="password" style="width:100%" name="password" id="password" />
+            </div>
+            <div >
+                <label for="email">Email </label>
+            </div>
+            <div>
+                <input type="text" style="width:100%" name="email" id="email" />
+            </div>
+            <br>
+            <div>
+                <label for="age">Age</label>
+            </div>
+
+            <div>
+                <input type="age" style="width:100%" name="age" id="age" />
+            </div>
+            <div>
+                <label for="gender">Gender</label>
+            </div>
+
+            <div>
+                <input type="gender" style="width:100%" name="gender" id="gender" />
+            </div>
+            
+            <br><br>
+            <div>
+                <button ng-click="cancel()" class="btn btn-primary btn-lg btn-block" style="width:65%;  margin:auto;">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer.html %>

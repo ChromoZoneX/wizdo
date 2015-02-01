@@ -20,7 +20,7 @@ router.post('/', function(req, res) {
     
     var yes, no;
     QuestionData.findOneAndUpdate(query, newData, {upsert:false}, function(err, doc){
-        if (err) return res.send(500, { error: "Question does not exist" });
+        if (err || !doc) return res.send(500, { error: "Question does not exist" });
         //return res.send("succesfully saved");
         yes = doc.yes;
         no = doc.no;

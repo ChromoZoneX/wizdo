@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
         if(!err) {
           res.json(201, {message: "Account: " + newAccountdata.username + " was created." });    
         } else {
-          res.json(500, {message: "Could not create account. Error: " + err});
+          res.json(500, {message: "Could not create account."});
         }
 
       });

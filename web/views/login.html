@@ -22,7 +22,7 @@
             </div>
             <br>
             <div>
-                <button ng-click="cancel()" class="btn btn-primary btn-lg btn-block" style="width:65%;  margin:auto;">Sign Up</button>
+                <a href="/signup" style="border-radius: 6px; width:65%;  margin:auto;" class="btn btn-primary btn-lg btn-block">Sign Up</a>
             </div>
         </div>
     </div>
@@ -33,12 +33,11 @@
         $("#submit").click(function(){
           user=$("#username").val();
           pass=$("#password").val();
+          alert(user + " " + pass);
           $.post("api/login",{username: user, password: pass}, function(data){
             if(data.message != "No Login Data")
               {
-                //alert("login success");
-                window.localStorage.setItem("username", user);
-                window.location.replace("/main");
+                alert("login success");
               }
           });
         });

@@ -39,9 +39,29 @@
             
             <br><br>
             <div>
-                <button ng-click="cancel()" class="btn btn-primary btn-lg btn-block" style="width:65%;  margin:auto;">Sign Up</button>
+                <input type="button" class="btn btn btn-primary btn-lg btn-block" style="width:65%;  margin:auto;" id="submit" value="Submit"></input>
             </div>
         </div>
     </div>
 </div>
+<script>
+      $(document).ready(function(){
+        var user, pass, email, age, gender;
+        $("#submit").click(function(){
+          user=$("#username").val();
+          pass=$("#password").val();
+          email=$("#email").val();
+          age=$("#age").val();
+          gender=$("#gender").val();
+          alert(user + " " + pass);
+          $.post("api/signup",{username: user, password: pass, email: email, age: age, gender: gender}, function(data){
+            if(data.message != "Could not create account." && data.message != "Account already exists")
+              {
+                //alert("login success");
+                window.location.replace("/");
+              }
+          });
+        });
+      });
+</script>
 <% include footer.html %>

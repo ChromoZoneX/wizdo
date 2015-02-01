@@ -15,21 +15,14 @@
       	console.log("SAFE");
       	var username =  window.localStorage.username;
       	$.post("/api/pastquestions",{username:username}, function(data){
-          if(data) {
-            question_text = data.question.question;
-            q_id = data.question.q_id;
-            num_no = data.question.no;
-            num_yes = data.question.yes;
+          if(data.message && data.message.length > 0) {
+          	var question_text;
+          	for (var i = 0 ; i < data.message.length; i++) {
+          		question_text = data.message.question;
+          	}
           } else {
-            question_text = "No more questions to answer... :("
-            num_no = 1;
-            num_yes = 1;
+            question_text = "No questions posted... :("
           }
-      		
-
-      		document.getElementById("no-bar").style.width= String(100 * num_no/(num_yes + num_no)) + "%";
-      		document.getElementById("yes-bar").style.width= String(100 * num_yes/(num_yes + num_no)) + "%";
-      		$("h1").text(question_text);
         });
       	$("#no").click(function(){
       		$.post("/api/updatequestion", {username:username, questionId: q_id, answer: "no"}, function(data) {

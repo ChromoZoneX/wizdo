@@ -33,11 +33,12 @@
         $("#submit").click(function(){
           user=$("#username").val();
           pass=$("#password").val();
-          alert(user + " " + pass);
           $.post("api/login",{username: user, password: pass}, function(data){
             if(data.message != "No Login Data")
               {
-                alert("login success");
+                //alert("login success");
+                window.localStorage.setItem("username", user);
+                window.location.replace("/main");
               }
           });
         });

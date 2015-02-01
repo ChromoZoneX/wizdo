@@ -4,9 +4,21 @@
 	<h1 style="text-align:center; font-size: 3.0em;">Ask a Question</h1>
 	<br>
 	<form>	
-		<textarea type="text" style="resize: vertical; width:75%; margin:10px;" placeholder="Your Question..."></textarea>
-		<input style="border-radius: 6px; width:65%;  margin:auto;" class="btn btn-primary btn-lg btn-block" type="submit" value="Ask"/>
+		<textarea type="text" style="resize: vertical; width:75%; margin:10px;" id="questionAsked" placeholder="Your Question..."></textarea>
+		<input id="ask" style="border-radius: 6px; width:65%;  margin:auto;" class="btn btn-primary btn-lg btn-block" type="submit" value="Ask"/>
 	</form>
     </div>
 </div>
+<script>
+      $(document).ready(function(){
+        var questionAsked;
+        $("#ask").click(function(){
+          questionAsked=$("#questionAsked").val();
+          $.post("/api/askquestion",{question: questionAsked, username: window.localStorage.username}, function(data){
+          		alert("SENT YO");
+          		window.location="/main";
+          });
+        });
+      });
+</script>
 <% include footer.html %>

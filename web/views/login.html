@@ -34,6 +34,7 @@
             if(data.message != "No Login Data")
               {
                 //alert("login success");
+                window.localStorage.setItem("username", user);
                 window.location.replace("/main");
               }
           });

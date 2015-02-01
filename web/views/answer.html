@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="jumbotron container" style="display: table; vertical-align: middle; width: 100%; max-width: 750px">
 		<!-- GET  Question-->
-        	<h1>Sample Question</h1>
+        	<h1></h1>
 
 	</div>
 	<div id="choices" class="jumbotron container" style="display: table; vertical-align: middle; width: 100%; max-width: 750px">
@@ -10,26 +10,57 @@
    		<div class="row" style="display: table-cell; vertical-align: middle; text-align: center;">		
 			<form style="text-align:center;">
 				<div class="col-md-4" style="padding-bottom: 20px">
-					<a ng-href="#/answer" class="btn btn-primary btn-lg btn-block btn-danger">NO</a>
+					<button id="no" class="btn btn-primary btn-lg btn-block btn-danger">NO</button>
 				</div>
 				<div class="col-md-4" style="padding-bottom: 20px">
-					<a ng-href="#/answer" class="btn btn-primary btn-lg btn-block btn-warning">SKIP</a>
+					<button id="skip" class="btn btn-primary btn-lg btn-block btn-warning">SKIP</button>
 				</div>
 				<div class="col-md-4" style="padding-bottom: 20px">
-					<a ng-href="#/answer" class="btn btn-primary btn-lg btn-block btn-success">YES</a>
+					<button id="yes" class="btn btn-primary btn-lg btn-block btn-success">YES</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div id="progressBar" class="jumbotron container" style="display: table; margin-bottom: 0px; vertical-align: middle; width: 100%; max-width: 750px">
 		<div class="progress">
-            <div class="progress-bar progress-bar-danger" style="width: 50%">
+            <div class="progress-bar progress-bar-danger" id="no-bar" style="width: 50%">
                 <span class="sr-only"># of Nos</span>
             </div>
-    		<div class="progress-bar progress-bar-success" style="width: 50%">
+    		<div class="progress-bar progress-bar-success" id="yes-bar" style="width: 50%">
                 <span class="sr-only"># of Yeses</span>
             </div>
         </div>
 	</div>
 </div>
+<script>
+      $(document).ready(function(){
+      	console.log("SAFE");
+      	var q_id;
+      	var question_text;
+      	var num_no, num_yes;
+      	var username =  window.localStorage.username;
+      	$.post("/api/retrievequestion",{username:username}, function(data){
+      		question_text = data.question.question;
+      		q_id = data.question.q_id;
+      		num_no = data.question.no;
+      		num_yes = data.question.yes;
+
+      		document.getElementById("no-bar").style.width= String(100 * num_no/(num_yes + num_no)) + "%";
+      		document.getElementById("yes-bar").style.width= String(100 * num_yes/(num_yes + num_no)) + "%";
+      		$("h1").text(question_text);
+        });
+      	$("#no").click(function(){
+      		$.post("/api/updatequestion", {username:username, questionId: q_id, answer: "no"}, function(data) {
+
+      		});
+      	});
+      	$("#skip").click(function(){
+			window.location="/answer";      	
+      	});
+      	$("#yes").click(function(){
+      		$.post("/api/updatequestion", {username:username, questionId: q_id, answer: "yes"}, function(data) {
+      		});
+      	});
+      });
+</script>
 <% include footer.html %>

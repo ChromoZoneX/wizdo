@@ -37,7 +37,8 @@
           $.post("api/login",{username: user, password: pass}, function(data){
             if(data.message != "No Login Data")
               {
-                alert("login success");
+                //alert("login success");
+                window.location.replace("/main");
               }
           });
         });

@@ -30,7 +30,7 @@ router.post('/', function(req, res) {
           query.findOne(function(err,docs) {
             console.log("doc: " + docs);
             if (docs) {
-              var q_ids = docs[0].q_ids;
+              var q_ids = docs.q_ids;
               q_ids.push(q_id);
               query.update({ $set: { q_ids: q_ids }},function(err){
                 if(!err)

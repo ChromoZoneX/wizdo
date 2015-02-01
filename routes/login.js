@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var Accountdata = require('../models/accountdata').Accountdata;
-
 /* Login Attempt */
 router.post('/', function(req, res) {
     var uname = req.body.username;
@@ -10,7 +9,7 @@ router.post('/', function(req, res) {
     Accountdata.find({ username: uname, password: pword }, function(err, docs) {
 	if(!err) {
             if (docs.length > 0){
-                res.json(200, { message: docs[0].username }); 
+                res.json(200, { message: docs[0].username });
             } else {
                 res.json(200, { message: "No Login Data" });  
             }

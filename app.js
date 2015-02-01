@@ -15,7 +15,7 @@ var updatequestion = require('./routes/updatequestion');
 var pastquestions = require('./routes/pastquestions');
 var pastanswers = require('./routes/pastanswers');
 var mongoose = require('mongoose');
-var hbs = require('hbs');
+// var hbs = require('hbs');
 
 mongoose.connect('mongodb://localhost/wizdo'); //Connect to local mongodb instance
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
@@ -45,17 +45,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/login', login);
 app.use('/api/signup', signup);
 app.use('/api/askquestion', askquestion);
-app.use('/api/retrievequestion', retrievequestion);
-app.use('/api/updatequestion', updatequestion);
 app.use('/api/pastquestions', pastquestions);
 app.use('/api/pastanswers', pastanswers);
+app.use('/api/retrievequestion', retrievequestion);
+app.use('/api/updatequestion', updatequestion);
 
+var auth = undefined;
 app.get('/', function(req, res) {
-    res.render('main');
+    if (auth) {
+        res.render('main')
+    } else {
+        res.redirect('/login');
+    }
 });
-var auth = undefined;   // user authentication
 app.get('/login', function(req, res) {
     res.render('login');
+});
+app.get('/main', function(req, res) {
+    res.render('main');
+});
+app.post('/auth', function(req, res) {
+    auth = res.body.auth;
+    res.end("done");
 });
 app.get('/ask', function(req, res) {
     res.render('ask');

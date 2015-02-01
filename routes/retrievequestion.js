@@ -15,7 +15,7 @@ router.post('/', function(req, res) {
         var randomQuestion;
         if(!err) {
             if(answersList) {
-		        ?console.log(answersList);
+		console.log(answersList);
                 var answeredArr = new sets.Set(answersList.q_ids);
                 Questiondata.where({username : { $ne : username } }).find( function(err, dataArr){
                     if(!err && dataArr.length > 0) {
@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
                         res.json(500, {message: "Could not get question. Error: " + err});
                     }                            
                         }
-                }); 
+                ); 
             } else {
                 Questiondata.where({username : { $ne : username } }).findOne( function(err, dataObj){
                     if(dataObj)

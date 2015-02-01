@@ -40,10 +40,17 @@
       	var num_no, num_yes;
       	var username =  window.localStorage.username;
       	$.post("/api/retrievequestion",{username:username}, function(data){
-      		question_text = data.question.question;
-      		q_id = data.question.q_id;
-      		num_no = data.question.no;
-      		num_yes = data.question.yes;
+          if(data) {
+            question_text = data.question.question;
+            q_id = data.question.q_id;
+            num_no = data.question.no;
+            num_yes = data.question.yes;
+          } else {
+            question_text = "No more questions to answer... :("
+            num_no = 1;
+            num_yes = 1;
+          }
+      		
 
       		document.getElementById("no-bar").style.width= String(100 * num_no/(num_yes + num_no)) + "%";
       		document.getElementById("yes-bar").style.width= String(100 * num_yes/(num_yes + num_no)) + "%";

@@ -17,6 +17,7 @@ router.post('/', function(req, res) {
       var newQuestionData = new QuestionData(); 
       newQuestionData.q_id = q_id;
       newQuestionData.question = question;
+      newQuestionData.username = username;
       newQuestionData.yes = 0;
       newQuestionData.no = 0;
       newQuestionData.timestamp = new Date().toString();

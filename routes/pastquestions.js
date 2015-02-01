@@ -9,7 +9,7 @@ router.post('/', function(req, res) {
 	questions.find({ username : uname }, function(err, docs) {
 		if(!err) {
 			if(docs.length > 0)
-				res.json( 200, { message : docs[0].q_ids });
+				res.json( 200, { message : docs[0] });
 			else
 				res.json( 200, { message : 'Empty' });
 		} else {
